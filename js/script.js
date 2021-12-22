@@ -70,7 +70,6 @@ for(let i = 0; i < 50; i++) {
     pixels.push(new Pixel(x,y,w,h,dx,dy))
 
 }
-console.log(pixels)
 
 function animate() {
     requestAnimationFrame(animate)
