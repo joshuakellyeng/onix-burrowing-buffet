@@ -7,12 +7,74 @@ canvas.height = window.innerHeight;
 
 
 
-let pixels = []
-for(let i = 0; i<100 ;i++) {
-    let x = Math.random() * window.innerWidth
-    let y = Math.random() * window.innerHeight
-    c.fillStyle = 'red'
-    pixels.push(c.fillRect(x,y,20,20))
+// let pixels = []
+// for(let i = 0; i<100 ;i++) {
+//     let w = 20
+//     let h = 20
+//     let x = Math.random() * (innerWidth - (w+h)*2)+(w+h)
+//     let y = Math.random() * (innerHeight - (w+h)*2)+(w+h)
+//     c.fillStyle = 'red'
+//     c.strokeStyle = 'black'
+//     pixels.push(c.fillRect(x,y,w,h))
+// }
+
+// console.log(pixels)
+
+
+
+
+// c.fillRect(x,y,5,5)
+
+
+class Pixel {
+    constructor(x,y,w,h,dx,dy) {
+        this.x = x
+        this.y = y
+        this.w = w
+        this.h = h
+        this.dx = dx
+        this.dy = dy
+        this.draw = function() {
+            c.fillStyle = 'red'
+            c.fillRect(this.x,this.y,this.w,this.h)
+        }
+        this.update= function() {
+
+            if(this.x > innerWidth || this.x < 0){
+                this.dx = -this.dx
+            }
+            if(this.y > innerHeight || this.y < 0){
+                
+                this.dy = -this.dy
+            }
+            this.x += this.dx
+            this.y += this.dy
+            this.draw()
+        }
+    }
 }
 
+
+const pixels = []
+
+for(let i = 0; i < 50; i++) {
+    let x = Math.random() * innerWidth
+    let y = Math.random() * innerHeight
+    let dx = (Math.random() - 0.5)
+    let dy = (Math.random() - 0.5)
+    let w = 10
+    let h = 10
+    pixels.push(new Pixel(x,y,w,h,dx,dy))
+
+}
 console.log(pixels)
+
+function animate() {
+    requestAnimationFrame(animate)
+    
+    c.clearRect(0,0, innerWidth,innerHeight)
+    for(let i = 0; i < pixels.length; i++) {
+        pixels[i].update()
+    }
+}
+animate()
