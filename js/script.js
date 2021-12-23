@@ -33,10 +33,10 @@ class Pixel {
 			c.fillRect(this.x, this.y, this.w, this.h);
 		};
 		this.update = function () {
-			if (this.x > canvas.width || this.x < 0) {
+			if (this.x > (canvas.width - this.w)|| this.x < 0) {
 				this.dx = -this.dx;
 			}
-			if (this.y > canvas.height || this.y < 0) {
+			if (this.y > (canvas.height - this.h) || this.y < 0) {
 				this.dy = -this.dy;
 			}
 			this.x += this.dx;
