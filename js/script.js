@@ -49,15 +49,17 @@ class Pixel {
 const pixels = [];
 
 for (let i = 0; i < 50; i++) {
-	//these two variables will set the  spawn location
-	let x = Math.random() * canvas.width;
-	let y = Math.random() * canvas.height;
+    //these two variables set width and height of the object
+	let w = 10;
+	let h = 10;
+	//these two variables will set the spawn location
+    //canvas.width,height - width and height of the object prevents the object from spawning on the edges
+	let x = Math.random() * (canvas.width - w);
+	let y = Math.random() * (canvas.height - h) ;
 	//these two variables will set the actual directional speed
 	let dx = Math.random() - 0.5;
 	let dy = Math.random() - 0.5;
-	//these two variables set width and height of the object
-	let w = 5;
-	let h = 5;
+	
 	pixels.push(new Pixel(x, y, w, h, dx, dy));
 }
 
