@@ -4,6 +4,10 @@ let c = canvas.getContext('2d');
 canvas.width = 360;
 canvas.height = 480;
 
+
+
+
+
 class Pixel {
 	constructor(x, y, w, h, color) {
 		this.x = x;
@@ -47,7 +51,13 @@ function animate() {
 init()
 animate()
 
-
+addEventListener('keydown', KeyboardEvent => {
+	if(KeyboardEvent.code === "ArrowUp" ){
+		console.log(KeyboardEvent.code)
+	} else {
+		console.log(KeyboardEvent.code)
+	}
+})
 
 
 
