@@ -39,7 +39,7 @@ class Pixel {
 }
 
 function init() {
-	snake = new Pixel(20, 20, 20, 20);
+	snake = new Pixel(20, 20, 20, 20, '#0C5AC0');
 }
 
 function animate() {
@@ -52,15 +52,48 @@ init()
 animate()
 
 addEventListener('keydown', KeyboardEvent => {
-	if(KeyboardEvent.code === "ArrowUp" ){
-		console.log(KeyboardEvent.code)
+	let move = KeyboardEvent.code;
+switch(move) {
+				case "ArrowUp":
+          snake.y -= 20;
+          console.log(snake.x, snake.y);
+          snake.update();
+          break;
+       case "ArrowDown":
+       		snake.y += 20;
+          console.log(snake.x, snake.y);
+          snake.update();
+          break;
+       case "ArrowLeft":
+       		snake.x -= 20;
+          console.log(snake.x, snake.y);
+          snake.update();
+          break;
+       case "ArrowRight":
+       		snake.x += 20;
+          console.log(snake.x, snake.y);
+          snake.update();
+          break;
+        }
+/* 	if(KeyboardEvent.code === "ArrowUp" ){
+	  snake.y -= 20;
+	    console.log(snake.y)
+	    snake.update()
 	} else {
-		console.log(KeyboardEvent.code)
-	}
+	  console.log(KeyboardEvent.code)
+	} */
 })
 
 
 
+/* 
+color pallet
+100D22
+A7304E
+0C5AC0
+17346F
+2AA5D8
+*/
 
 
 
@@ -122,5 +155,4 @@ addEventListener('keydown', KeyboardEvent => {
 
 // 	pixels.push(new Pixel(x, y, w, h, dx, dy));
 // }
-
 

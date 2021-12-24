@@ -34,7 +34,7 @@ canvas {
 
 @media (min-width: 60em) {
 	.game-container{
-		transform: scale(2);
+		transform: scale(1.5);
 		image-rendering: pixelated;
 	}
 }
