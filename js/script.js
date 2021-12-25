@@ -12,8 +12,8 @@ class Pixel {
 		this.h = h;
 		this.color = color;
 		this.velocity = {
-			x: 1,
-			y: 1,
+			x: 0.5,
+			y: 0,
 		};
 		this.draw = function () {
 			c.fillRect(this.x, this.y, this.w, this.h);
@@ -21,21 +21,23 @@ class Pixel {
 			c.fill();
 		};
 		this.update = function () {
-			this.draw();
-			if (this.x > canvas.width - this.w || this.x < 0) {
-				this.velocity.x = -this.velocity.x;
-			}
-			if (this.y > canvas.height - this.h || this.y < 0) {
-				this.velocity.y = -this.velocity.y;
-			}
-			// this.x += this.velocity.x;
-			// this.y += this.velocity.y;
+		  this.draw();
+		  if (this.x > canvas.width - this.w || this.x < 0) {
+		    this.velocity.x = -this.velocity.x;
+		  }
+		  if (this.y > canvas.height - this.h || this.y < 0) {
+		    this.velocity.y = -this.velocity.y;
+		  }
+		  //this.x += this.velocity.x;
+		  //this.y += this.velocity.y;
 		};
 	}
 }
 
 function init() {
-	snake = new Pixel(20, 20, 20, 20, '#0C5AC0');
+/*    x = Math.floor(Math.random() * (canvas.width - apple.w))
+   y = Math.floor(Math.random() *(canvas.height - apple.h)) */
+   snake = new Pixel(20, 20, 20, 20, "#A7304E");
 }
 
 function animate() {
@@ -48,28 +50,30 @@ init();
 animate();
 
 function moveUp() {
+if(snake.y > 0){
 	snake.y -= 20;
-	console.log(snake.x, snake.y);
-	snake.update();
+	}
 }
 
 function moveDown() {
+if(snake.y < canvas.height - snake.h) {
 	snake.y += 20;
-	console.log(snake.x, snake.y);
-	snake.update();
+	}
 }
 
 function moveLeft() {
+if(snake.x > 0){
 	snake.x -= 20;
-	console.log(snake.x, snake.y);
-	snake.update();
+	}
 }
 
 function moveRight() {
-	snake.x += 20;
-	console.log(snake.x, snake.y);
-	snake.update();
+if(snake.x < canvas.width - snake.w){
+		snake.x += 20;
+	}
 }
+
+
 addEventListener('keydown', (KeyboardEvent) => {
 	let move = KeyboardEvent.code;
 	switch (move) {
@@ -86,14 +90,49 @@ addEventListener('keydown', (KeyboardEvent) => {
 			moveRight();
 			break;
 	}
-	/* 	if(KeyboardEvent.code === "ArrowUp" ){
-	  snake.y -= 20;
-	    console.log(snake.y)
-	    snake.update()
-	} else {
-	  console.log(KeyboardEvent.code)
-	} */
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* 
 color pallet
