@@ -4,10 +4,6 @@ let c = canvas.getContext('2d');
 canvas.width = 360;
 canvas.height = 480;
 
-
-
-
-
 class Pixel {
 	constructor(x, y, w, h, color) {
 		this.x = x;
@@ -26,11 +22,11 @@ class Pixel {
 		};
 		this.update = function () {
 			this.draw();
-			if (this.x > (canvas.width - this.w)|| this.x < 0) {
-				this.velocity.x = -this.velocity.x
+			if (this.x > canvas.width - this.w || this.x < 0) {
+				this.velocity.x = -this.velocity.x;
 			}
-			if (this.y > (canvas.height - this.h)|| this.y < 0) {
-				this.velocity.y = -this.velocity.y
+			if (this.y > canvas.height - this.h || this.y < 0) {
+				this.velocity.y = -this.velocity.y;
 			}
 			// this.x += this.velocity.x;
 			// this.y += this.velocity.y;
@@ -43,48 +39,61 @@ function init() {
 }
 
 function animate() {
-	requestAnimationFrame(animate) 
-	c.clearRect(0,0, canvas.width, canvas.height)
-	snake.update()
+	requestAnimationFrame(animate);
+	c.clearRect(0, 0, canvas.width, canvas.height);
+	snake.update();
 }
 
-init()
-animate()
+init();
+animate();
 
-addEventListener('keydown', KeyboardEvent => {
+function moveUp() {
+	snake.y -= 20;
+	console.log(snake.x, snake.y);
+	snake.update();
+}
+
+function moveDown() {
+	snake.y += 20;
+	console.log(snake.x, snake.y);
+	snake.update();
+}
+
+function moveLeft() {
+	snake.x -= 20;
+	console.log(snake.x, snake.y);
+	snake.update();
+}
+
+function moveRight() {
+	snake.x += 20;
+	console.log(snake.x, snake.y);
+	snake.update();
+}
+addEventListener('keydown', (KeyboardEvent) => {
 	let move = KeyboardEvent.code;
-switch(move) {
-				case "ArrowUp":
-          snake.y -= 20;
-          console.log(snake.x, snake.y);
-          snake.update();
-          break;
-       case "ArrowDown":
-       		snake.y += 20;
-          console.log(snake.x, snake.y);
-          snake.update();
-          break;
-       case "ArrowLeft":
-       		snake.x -= 20;
-          console.log(snake.x, snake.y);
-          snake.update();
-          break;
-       case "ArrowRight":
-       		snake.x += 20;
-          console.log(snake.x, snake.y);
-          snake.update();
-          break;
-        }
-/* 	if(KeyboardEvent.code === "ArrowUp" ){
+	switch (move) {
+		case 'ArrowUp':
+			moveUp();
+			break;
+		case 'ArrowDown':
+			moveDown();
+			break;
+		case 'ArrowLeft':
+			moveLeft();
+			break;
+		case 'ArrowRight':
+			moveRight();
+			break;
+	}
+	/* 	if(KeyboardEvent.code === "ArrowUp" ){
 	  snake.y -= 20;
 	    console.log(snake.y)
 	    snake.update()
 	} else {
 	  console.log(KeyboardEvent.code)
 	} */
-})
-
-
+});
 
 /* 
 color pallet
@@ -94,20 +103,6 @@ A7304E
 17346F
 2AA5D8
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // console.log(pixels)
 
@@ -155,4 +150,3 @@ A7304E
 
 // 	pixels.push(new Pixel(x, y, w, h, dx, dy));
 // }
-
