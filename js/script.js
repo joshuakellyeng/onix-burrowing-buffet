@@ -22,14 +22,18 @@ class Pixel {
 		};
 		this.update = function () {
 		  this.draw();
-		  if (this.x > canvas.width - this.w || this.x < 0) {
-		    this.velocity.x = -this.velocity.x;
-		  }
-		  if (this.y > canvas.height - this.h || this.y < 0) {
-		    this.velocity.y = -this.velocity.y;
-		  }
-		  //this.x += this.velocity.x;
-		  //this.y += this.velocity.y;
+		//   if (this.x > canvas.width - this.w || this.x < 0) {
+		//     this.x = this.x - 20
+		// 	this.x--
+		//   }
+		//   if (this.y > canvas.height - this.h || this.y < 0) {
+		//     this.y = this.y - 20
+		// 	this.y--
+		//   }
+		//   this.x = this.x + 20
+
+		//   this.y = this.y + 20
+
 		};
 	}
 }
