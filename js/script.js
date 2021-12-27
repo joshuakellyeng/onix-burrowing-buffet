@@ -1,8 +1,15 @@
 const canvas = document.querySelector('canvas');
-let c = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 
-canvas.width = 360;
-canvas.height = 480;
+canvas.width = 480;
+canvas.height = 640;
+
+let speed = 7
+let gridSize = 20
+let gridLengthX = canvas.width / gridSize;
+let gridLengthY = canvas.height / gridSize;
+let headX = 10;
+let headY = 10;
 
 class Pixel {
 	constructor(x, y, w, h, color) {
@@ -16,9 +23,9 @@ class Pixel {
 			y: 0,
 		};
 		this.draw = function () {
-			c.fillRect(this.x, this.y, this.w, this.h);
-			c.fillStyle = this.color;
-			c.fill();
+			ctx.fillRect(this.x, this.y, this.w, this.h);
+			ctx.fillStyle = this.color;
+			ctx.fill();
 		};
 		this.update = function () {
 		  this.draw();
@@ -37,21 +44,22 @@ class Pixel {
 		};
 	}
 }
-
-function init() {
-/*    x = Math.floor(Math.random() * (canvas.width - apple.w))
-   y = Math.floor(Math.random() *(canvas.height - apple.h)) */
-   snake = new Pixel(20, 20, 20, 20, "#A7304E");
-}
+snake = new Pixel(headX * gridLengthX, headY * gridLengthY, 18, 18, "#A7304E");
+// function init() {
+// 	/*    x = Math.floor(Math.random() * (canvas.width - apple.w))
+// 	y = Math.floor(Math.random() *(canvas.height - apple.h)) */
+// }
+  
 
 function animate() {
-	requestAnimationFrame(animate);
-	c.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	snake.update();
+	setTimeout(animate, 1000/ speed)
 }
 
-init();
+// init();
 animate();
+console.log(snake)
 
 function moveUp() {
 if(snake.y > 0){
@@ -149,7 +157,7 @@ A7304E
 
 // console.log(pixels)
 
-// c.fillRect(x,y,5,5)
+// ctx.fillRect(x,y,5,5)
 
 // class Pixel {
 // 	constructor(x, y, w, h, dx, dy) {
@@ -160,8 +168,8 @@ A7304E
 // 		this.dx = dx;
 // 		this.dy = dy;
 // 		this.draw = function () {
-// 			c.fillStyle = 'red';
-// 			c.fillRect(this.x, this.y, this.w, this.h);
+// 			ctx.fillStyle = 'red';
+// 			ctx.fillRect(this.x, this.y, this.w, this.h);
 // 		};
 // 		this.update = function () {
 // 			if (this.x > (canvas.width - this.w)|| this.x < 0) {
