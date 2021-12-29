@@ -1,11 +1,13 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
+const score = document.querySelector('#score');
 
-canvas.width = 480;
-canvas.height = 640;
+canvas.width = 360;
+canvas.height = 480;
 
-let speed = 7
-let gridSize = 20
+
+let speed = 7;
+let gridSize = 20;
 let gridLengthX = canvas.width / gridSize;
 let gridLengthY = canvas.height / gridSize;
 let headX = 10;
@@ -28,63 +30,60 @@ class Pixel {
 			ctx.fill();
 		};
 		this.update = function () {
-		  this.draw();
-		//   if (this.x > canvas.width - this.w || this.x < 0) {
-		//     this.x = this.x - 20
-		// 	this.x--
-		//   }
-		//   if (this.y > canvas.height - this.h || this.y < 0) {
-		//     this.y = this.y - 20
-		// 	this.y--
-		//   }
-		//   this.x = this.x + 20
+			this.draw();
+			//   if (this.x > canvas.width - this.w || this.x < 0) {
+			//     this.x = this.x - 20
+			// 	this.x--
+			//   }
+			//   if (this.y > canvas.height - this.h || this.y < 0) {z
+			//     this.y = this.y - 20
+			// 	this.y--
+			//   }
+			//   this.x = this.x + 20
 
-		//   this.y = this.y + 20
-
+			//   this.y = this.y + 20
 		};
 	}
 }
-snake = new Pixel(headX * gridLengthX, headY * gridLengthY, 18, 18, "#A7304E");
+snake = new Pixel(20, 20, 18, 18, '#A7304E');
 // function init() {
 // 	/*    x = Math.floor(Math.random() * (canvas.width - apple.w))
 // 	y = Math.floor(Math.random() *(canvas.height - apple.h)) */
 // }
-  
 
 function animate() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	snake.update();
-	setTimeout(animate, 1000/ speed)
+	setTimeout(animate, 1000 / speed);
 }
 
 // init();
 animate();
-console.log(snake)
+console.log(snake);
 
 function moveUp() {
-if(snake.y > 0){
-	snake.y -= 20;
+	if (snake.y > 0) {
+		snake.y -= 20;
 	}
 }
 
 function moveDown() {
-if(snake.y < canvas.height - snake.h) {
-	snake.y += 20;
+	if (snake.y < canvas.height - snake.h) {
+		snake.y += 20;
 	}
 }
 
 function moveLeft() {
-if(snake.x > 0){
-	snake.x -= 20;
+	if (snake.x > 0) {
+		snake.x -= 20;
 	}
 }
 
 function moveRight() {
-if(snake.x < canvas.width - snake.w){
+	if (snake.x < canvas.width - snake.w) {
 		snake.x += 20;
 	}
 }
-
 
 addEventListener('keydown', (KeyboardEvent) => {
 	let move = KeyboardEvent.code;
@@ -103,48 +102,6 @@ addEventListener('keydown', (KeyboardEvent) => {
 			break;
 	}
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* 
 color pallet
