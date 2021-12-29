@@ -5,13 +5,20 @@ const score = document.querySelector('#score');
 canvas.width = 360;
 canvas.height = 480;
 
-
 let speed = 7;
-let gridSize = 20;
-let gridLengthX = canvas.width / gridSize;
-let gridLengthY = canvas.height / gridSize;
+let gridSize = 18
+let gridCountX = 18;
+let gridCountY = 24;
+let gridLengthX = canvas.width / gridCountX;
+let gridLengthY = canvas.height / gridCountY;
 let headX = 10;
 let headY = 10;
+
+let fruitX = 5
+let fruitY = 5
+
+let xVelocity = 0
+let yVelocity = 0
 
 class Pixel {
 	constructor(x, y, w, h, color) {
@@ -20,141 +27,31 @@ class Pixel {
 		this.w = w;
 		this.h = h;
 		this.color = color;
-		this.velocity = {
-			x: 0.5,
-			y: 0,
-		};
 		this.draw = function () {
-			ctx.fillRect(this.x, this.y, this.w, this.h);
 			ctx.fillStyle = this.color;
-			ctx.fill();
-		};
-		this.update = function () {
-			this.draw();
-			//   if (this.x > canvas.width - this.w || this.x < 0) {
-			//     this.x = this.x - 20
-			// 	this.x--
-			//   }
-			//   if (this.y > canvas.height - this.h || this.y < 0) {z
-			//     this.y = this.y - 20
-			// 	this.y--
-			//   }
-			//   this.x = this.x + 20
-
-			//   this.y = this.y + 20
+			ctx.strokeStyle = "white"
+			ctx.fillRect(this.x, this.y, this.w, this.h);
 		};
 	}
 }
-snake = new Pixel(20, 20, 18, 18, '#A7304E');
+const snake = new Pixel(headX * gridLengthX, headY * gridLengthY, gridSize, gridSize, '#A7304E');
 // function init() {
 // 	/*    x = Math.floor(Math.random() * (canvas.width - apple.w))
 // 	y = Math.floor(Math.random() *(canvas.height - apple.h)) */
 // }
 
-function animate() {
+
+const fruit = new Pixel(fruitX * gridLengthX, fruitY * gridLengthY, gridSize, gridSize, "purple")
+
+// init();animate();
+
+console.l
+
+function initGame() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	snake.update();
-	setTimeout(animate, 1000 / speed);
+	fruit.draw()
+	snake.draw();
+	setTimeout(initGame, 1000 / speed);
+
 }
-
-// init();
-animate();
-console.log(snake);
-
-function moveUp() {
-	if (snake.y > 0) {
-		snake.y -= 20;
-	}
-}
-
-function moveDown() {
-	if (snake.y < canvas.height - snake.h) {
-		snake.y += 20;
-	}
-}
-
-function moveLeft() {
-	if (snake.x > 0) {
-		snake.x -= 20;
-	}
-}
-
-function moveRight() {
-	if (snake.x < canvas.width - snake.w) {
-		snake.x += 20;
-	}
-}
-
-addEventListener('keydown', (KeyboardEvent) => {
-	let move = KeyboardEvent.code;
-	switch (move) {
-		case 'ArrowUp':
-			moveUp();
-			break;
-		case 'ArrowDown':
-			moveDown();
-			break;
-		case 'ArrowLeft':
-			moveLeft();
-			break;
-		case 'ArrowRight':
-			moveRight();
-			break;
-	}
-});
-
-/* 
-color pallet
-100D22
-A7304E
-0C5AC0
-17346F
-2AA5D8
-*/
-
-// console.log(pixels)
-
-// ctx.fillRect(x,y,5,5)
-
-// class Pixel {
-// 	constructor(x, y, w, h, dx, dy) {
-// 		this.x = x;
-// 		this.y = y;
-// 		this.w = w;
-// 		this.h = h;
-// 		this.dx = dx;
-// 		this.dy = dy;
-// 		this.draw = function () {
-// 			ctx.fillStyle = 'red';
-// 			ctx.fillRect(this.x, this.y, this.w, this.h);
-// 		};
-// 		this.update = function () {
-// 			if (this.x > (canvas.width - this.w)|| this.x < 0) {
-// 				this.dx = -this.dx;
-// 			}
-// 			if (this.y > (canvas.height - this.h) || this.y < 0) {
-// 				this.dy = -this.dy;
-// 			}
-// 			this.x += this.dx;
-// 			this.y += this.dy;
-// 			this.draw();
-// 		};
-// 	}
-// }
-
-// const pixels = [];
-
-// for (let i = 0; i < 50; i++) {
-//     these two variables set width and height of the object
-// 	let w = 10;
-// 	let h = 10;
-// 	these two variables will set the spawn location
-//     canvas.width,height - width and height of the object prevents the object from spawning on the edges
-// 	let x = Math.random() * (canvas.width - w);
-// 	let y = Math.random() * (canvas.height - h) ;
-// 	these two variables will set the actual directional speed
-// 	let dx = Math.random() - 0.5;
-// 	let dy = Math.random() - 0.5;
-
-// 	pixels.push(new Pixel(x, y, w, h, dx, dy));
-// }
+ initGame()
