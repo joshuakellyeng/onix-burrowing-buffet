@@ -19,18 +19,16 @@ const game = {
 	speed: 4,
 	//blockSize will determine the size of our blocks along the game grid
 	blockSize: 18,
-	//gameWindowLengthX will determine the length the game window along the X axis in block size for object placement
-
-	gameWindowLengthX: 20,
-	//gameWindowLengthY will determine the length the game window along the Y axis in block size for object placement
-	gameWindowLengthY: 20,
+	//gameGridArea will determine the length the game window along the X axis in block size for object placement
+	//gameGridArea will determine the cell size that our snake block 
+	gameGridArea: 20,
 	//this will be the initial value for the snake head X spawn location
 	headX: 10,
 	//this will be the initial value for the snake head Y spawn location
 	headY: 10,
 
 	snakeBody: [],
-	tailLength: 2,
+	tailLength: 0,
 
 	fruitX: 5,
 	fruitY: 5,
@@ -39,14 +37,16 @@ const game = {
 
 	xVelocity: 0,
 	yVelocity: 0,
+
+	gameOver: false,
 	drawSnake() {
 
 		ctx.fillStyle = '#308AA7';
 		for (let i = 0; i < game.snakeBody.length; i++) {
 			let part = game.snakeBody[i];
 			ctx.fillRect(
-				part.x * game.gameWindowLengthX,
-				part.y * game.gameWindowLengthY,
+				part.x * game.gameGridArea,
+				part.y * game.gameGridArea,
 				game.blockSize,
 				game.blockSize
 			);
@@ -60,8 +60,8 @@ const game = {
 		ctx.fillStyle = '#A7304E';
 		ctx.strokeStyle = 'white';
 		ctx.fillRect(
-			game.headX * game.gameWindowLengthX,
-			game.headY * game.gameWindowLengthY,
+			game.headX * game.gameGridArea,
+			game.headY * game.gameGridArea,
 			game.blockSize,
 			game.blockSize
 		);
@@ -78,11 +78,19 @@ const game = {
 		// 	ctx.fillStyle = fruitColors[i]
 		// }
 		ctx.fillRect(
-			game.fruitX * game.gameWindowLengthX,
-			game.fruitY * game.gameWindowLengthY,
+			game.fruitX * game.gameGridArea,
+			game.fruitY * game.gameGridArea,
 			game.blockSize,
 			game.blockSize
 		);
+	},
+	isGameOver(){
+		if(game.headX < 0){
+			game.gameOver = true
+			console.log(game.gameOver)
+		}
+		//add a game over screen
+	
 	},
 	checkFruitCollision() {
 		if (game.fruitX === game.headX && game.fruitY === game.headY) {
@@ -91,7 +99,12 @@ const game = {
 			game.tailLength++;
 			game.gameScore += 100;
 			score.innerText = game.gameScore;
-			console.log(`the fruit is at x:${game.fruitX}, y:${game.fruitY}`)
+
+
+			// if(game.gameScore === 1000){
+			// 	game.speed += 2;
+			// }
+			// console.log(game.speed)
 		}
 	},
 	//add rock collision method
@@ -127,8 +140,13 @@ const game = {
 		}
 	},
 	runGame() {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		game.changeSnakePosition();
+ 		game.isGameOver();
+		 //using a truthy statement to end the loop
+		if (game.gameOver) {
+			return;
+		}
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		game.checkFruitCollision();
 		game.drawSnake();
 		game.drawFruit();
