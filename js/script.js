@@ -5,53 +5,47 @@ const score = document.querySelector('#score');
 canvas.width = 360;
 canvas.height = 480;
 
-let speed = 7;
-let gridSize = 18
-let gridCountX = 18;
-let gridCountY = 24;
-let gridLengthX = canvas.width / gridCountX;
-let gridLengthY = canvas.height / gridCountY;
-let headX = 10;
-let headY = 10;
+const game = {
+	//speed key will determine the speed of the game and the refresh rate of the animation
+	speed: 6,
 
-let fruitX = 5
-let fruitY = 5
+	//blockSize will determine the size of our blocks along the game grid
+	blockSize: 18,
+	//gameWindowLengthX will determine the length the game window along the X axis in block size for object placement
+	gameWindowLengthX: 18,
+	//gameWindowLengthY will determine the length the game window along the Y axis in block size for object placement
+	gameWindowLengthY: 24,
 
-let xVelocity = 0
-let yVelocity = 0
+	//this will be the initial value for the snake head X spawn location
+	headX: 10,
+	//this will be the initial value for the snake head Y spawn location
+	headY: 10,
 
-class Pixel {
-	constructor(x, y, w, h, color) {
-		this.x = x;
-		this.y = y;
-		this.w = w;
-		this.h = h;
-		this.color = color;
-		this.draw = function () {
-			ctx.fillStyle = this.color;
-			ctx.strokeStyle = "white"
-			ctx.fillRect(this.x, this.y, this.w, this.h);
-		};
-	}
-}
-const snake = new Pixel(headX * gridLengthX, headY * gridLengthY, gridSize, gridSize, '#A7304E');
-// function init() {
-// 	/*    x = Math.floor(Math.random() * (canvas.width - apple.w))
-// 	y = Math.floor(Math.random() *(canvas.height - apple.h)) */
-// }
+	fruitX: 5,
+	fruitY: 5,
+	xVelocity: 0,
+	yVelocity: 0,
+	drawSnake() {
+		ctx.fillStyle = 'red';
+		ctx.strokeStyle = 'white';
+		ctx.fillRect(
+			game.headX * game.gameWindowLengthX,
+			game.headY * game.gameWindowLengthY,
+			game.blockSize,
+			game.blockSize
+		);
+	},
+	moveSnake(event) {
+		if (event.key === 'ArrowUp') {
+			game.yVelocity = -1;
+		}
+	},
+	runGame() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		game.drawSnake();
+		setTimeout(game.runGame, 1000 / game.speed);
+	},
+};
 
-
-const fruit = new Pixel(fruitX * gridLengthX, fruitY * gridLengthY, gridSize, gridSize, "purple")
-
-// init();animate();
-
-console.l
-
-function initGame() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	fruit.draw()
-	snake.draw();
-	setTimeout(initGame, 1000 / speed);
-
-}
- initGame()
+game.runGame();
+document.body.addEventListener('keydown', game.moveSnake);
