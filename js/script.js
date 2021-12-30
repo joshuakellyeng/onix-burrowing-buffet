@@ -2,7 +2,7 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const score = document.querySelector('#score');
 
-//audio
+//game audio
 const gameSound = new Audio('/assets/theme.mp3')
 const eatSound = new Audio('/assets/eat.mp3')
 const lvlSound = new Audio('/assets/lvl.mp3')
