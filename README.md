@@ -8,3 +8,8 @@ I watched <a href="https://youtube.com/playlist?list=PLpPnRKq7eNW3We9VdCfx9fprhq
 https://stackoverflow.com/questions/1092578/calling-method-inside-another-method-in-javascript
 
 https://keycode.info/
+
+https://opengameart.org/content/512-sound-effects-8-bit-style
+https://opengameart.org/content/electro-opening-theme
+Copyright/Attribution Notice: 
+Music by Cleyton Kauffman - https://soundcloud.com/cleytonkauffman

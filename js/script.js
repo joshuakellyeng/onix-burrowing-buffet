@@ -2,6 +2,14 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const score = document.querySelector('#score');
 
+//audio
+const gameSound = new Audio('/assets/theme.mp3')
+const eatSound = new Audio('/assets/eat.mp3')
+const lvlSound = new Audio('/assets/lvl.mp3')
+const gameOverSound = new Audio('/assets/gameover.mp3')
+
+
+
 canvas.width = 360;
 canvas.height = 480;
 
@@ -85,10 +93,24 @@ const game = {
 		);
 	},
 	isGameOver(){
-		if(game.headX < 0){
+		//walls lose case
+		if(game.headX < 0 || game.headX > game.fruitRandomizerX){
 			game.gameOver = true
 			console.log(game.gameOver)
 		}
+		if(game.headY < 0 || game.headY > game.fruitRandomizerY){
+			game.gameOver = true
+			console.log(game.gameOver)
+		}
+		//body touch lose case
+		for(let i = 0; i < game.snakeBody.length; i++){
+			let part = game.snakeBody[i];
+			if(part.x === game.headX && part.y === game.headY){
+				game.gameOver = true
+				break;
+			}
+		}
+
 		//add a game over screen
 	
 	},
@@ -99,12 +121,32 @@ const game = {
 			game.tailLength++;
 			game.gameScore += 100;
 			score.innerText = game.gameScore;
+			eatSound.play();
 
-
-			// if(game.gameScore === 1000){
-			// 	game.speed += 2;
-			// }
-			// console.log(game.speed)
+			if(game.gameScore === 500){
+				game.speed += 2;
+				lvlSound.play()
+			}
+			if(game.gameScore === 1000){
+				game.speed += 3;
+				lvlSound.play()
+			}
+			if(game.gameScore === 1500){
+				game.speed += 4;
+				lvlSound.play()
+			}
+			if(game.gameScore === 2000){
+				game.speed += 5;
+				lvlSound.play()
+			}
+			if(game.gameScore === 2500){
+				game.speed += 5;
+				lvlSound.play()
+			}
+			if(game.gameScore === 3000){
+				game.speed += 15;
+				lvlSound.play()
+			}
 		}
 	},
 	//add rock collision method
@@ -140,10 +182,12 @@ const game = {
 		}
 	},
 	runGame() {
+		gameSound.play()
 		game.changeSnakePosition();
  		game.isGameOver();
 		 //using a truthy statement to end the loop
 		if (game.gameOver) {
+			gameOverSound.play()
 			return;
 		}
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -151,7 +195,6 @@ const game = {
 		game.drawSnake();
 		game.drawFruit();
 		setTimeout(game.runGame, 1000 / game.speed);
-		console.log(game.headX,game.headY)
 	},
 };
 
