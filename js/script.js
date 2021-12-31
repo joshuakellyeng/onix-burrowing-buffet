@@ -82,7 +82,7 @@ const game = {
 	headX: 10,
 	//this will be the initial value for the snake head Y spawn location
 	headY: 10,
-
+	//snakeBody will hold the segments added to the snake head
 	snakeBody: [],
 	tailLength: 0,
 
@@ -148,6 +148,9 @@ const game = {
 		if(game.headY < 0 || game.headY > game.fruitRandomizerY){
 			game.gameOver = true
 		}
+		if(game.gameScore > 4000){
+			game.gameOver = true
+		}
 		//body touch lose case
 		for(let i = 0; i < game.snakeBody.length; i++){
 			let part = game.snakeBody[i];
@@ -199,7 +202,7 @@ const game = {
 	},
 	//add rock collision method
 	moveSnake(event) {
-		if (event.key === 'ArrowUp') {
+		if (event.key === 'ArrowUp' || event.key === 'w' ) {
 			//the nested conditional if statement prevents our snake from turning in on itself
 			if (game.yVelocity === 1) {
 				return;
@@ -207,21 +210,21 @@ const game = {
 			game.yVelocity = -1;
 			game.xVelocity = 0;
 		}
-		if (event.key === 'ArrowDown') {
+		if (event.key === 'ArrowDown' || event.key === 's') {
 			if (game.yVelocity === -1) {
 				return;
 			}
 			game.yVelocity = 1;
 			game.xVelocity = 0;
 		}
-		if (event.key === 'ArrowLeft') {
+		if (event.key === 'ArrowLeft' || event.key === 'a') {
 			if (game.xVelocity === 1) {
 				return;
 			}
 			game.yVelocity = 0;
 			game.xVelocity = -1;
 		}
-		if (event.key === 'ArrowRight') {
+		if (event.key === 'ArrowRight'|| event.key === 'd') {
 			if (game.xVelocity === -1) {
 				return;
 			}
