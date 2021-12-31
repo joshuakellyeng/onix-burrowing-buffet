@@ -177,26 +177,32 @@ const game = {
 			if(game.gameScore === 500){
 				game.speed += 2;
 				lvlSound.play()
+				console.log(game.speed)
 			}
 			if(game.gameScore === 1000){
 				game.speed += 3;
 				lvlSound.play()
+				console.log(game.speed)
 			}
 			if(game.gameScore === 1500){
 				game.speed += 4;
 				lvlSound.play()
+				console.log(game.speed)
 			}
 			if(game.gameScore === 2000){
 				game.speed += 5;
 				lvlSound.play()
+				console.log(game.speed)
 			}
 			if(game.gameScore === 2500){
 				game.speed += 5;
 				lvlSound.play()
+				console.log(game.speed)
 			}
 			if(game.gameScore === 3000){
 				game.speed += 15;
 				lvlSound.play()
+				console.log(game.speed)
 			}
 		}
 	},
@@ -261,6 +267,11 @@ const game = {
 			gameOverSound.play()
 			modal.classList.remove('hide')
 			restartBtn.classList.remove('hide')
+			return;
+		}
+		//the only win condition
+		if(game.gameScore === 3200){
+			alert("You Lasted One Round At The Insane Level Congratulations!")
 			return;
 		}
 		game.checkFruitCollision();
