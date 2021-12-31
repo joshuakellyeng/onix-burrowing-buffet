@@ -35,10 +35,61 @@ h1,h2{
 }
 
 canvas {
-	outline: 1px solid black;
+	outline: 1px solid var(--amaranth);
     background-color: #fff;
     border-radius: 2px;
 	box-shadow: 0px 10px 40px 20px rgba(255, 0, 0, 0.521);
+}
+
+.bg-white{
+	background-color: #fff;
+	border: 1px solid var(--amaranth);
+	width: 300px;
+	height: 30%;
+	/* padding: 0.5em 0; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+	color: var(--amaranth);
+}
+.bg-white h3 {
+	font-size: 2.5em;
+}
+.modal-btns{
+	display: flex;
+	flex-direction: column;
+
+}
+.bg-white button{
+	cursor: pointer;
+	background-color: var(--amaranth);
+	color: #fff;
+	padding: 0.5em 1em;
+	margin: 0.5em 0;
+	border: none;
+	border-radius: 5px;
+	font-weight: bolder;
+    font-family: 'Press Start 2P',cursive;
+}
+
+.fixed{
+	position: fixed;
+	top: 10%;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.flex{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.hide {
+	display: none;
 }
 
 

@@ -21,6 +21,16 @@
 		<div class="game-container">
 			<h1>snake.exe</h1>
 			<h2>score: <span id="score">0</span></h2>
+			<div class="fixed flex" id="modal">
+				<div class="bg-white">
+					<h3 id="modal-score">0</h3>
+					<p>Score</p>
+					<div class="modal-btns">
+						<button id="start-btn" onclick="game.runGame()">Start Game</button>
+						<button id="restart-btn" class="hide">Restart</button>
+					</div>
+				</div>
+			</div>
 			<canvas></canvas>
 
 			<!-- <div class="buttons">

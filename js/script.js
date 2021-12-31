@@ -1,6 +1,12 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const score = document.querySelector('#score');
+const modal = document.querySelector('#modal')
+const modalScore = document.querySelector('#modal-score')
+const startBtn = document.querySelector('#start-btn')
+const restartBtn = document.querySelector('#restart-btn')
+
+
 
 //game audio
 const gameSound = new Audio('/assets/theme.mp3')
@@ -96,11 +102,9 @@ const game = {
 		//walls lose case
 		if(game.headX < 0 || game.headX > game.fruitRandomizerX){
 			game.gameOver = true
-			console.log(game.gameOver)
 		}
 		if(game.headY < 0 || game.headY > game.fruitRandomizerY){
 			game.gameOver = true
-			console.log(game.gameOver)
 		}
 		//body touch lose case
 		for(let i = 0; i < game.snakeBody.length; i++){
@@ -110,7 +114,7 @@ const game = {
 				break;
 			}
 		}
-
+		
 		//add a game over screen
 	
 	},
@@ -119,8 +123,10 @@ const game = {
 			game.fruitX = Math.floor(Math.random() * game.fruitRandomizerX);
 			game.fruitY = Math.floor(Math.random() * game.fruitRandomizerY);
 			game.tailLength++;
-			game.gameScore += 100;
-			score.innerText = game.gameScore;
+			game.gameScore += 100
+			score.innerText = game.gameScore
+			modalScore.innerText = game.gameScore
+
 			eatSound.play();
 
 			if(game.gameScore === 500){
@@ -181,22 +187,50 @@ const game = {
 			game.xVelocity = 1;
 		}
 	},
+	init(){
+		game.gameScore = 0
+		game.speed = 5
+		game.blockSize = 18
+		game.gameGridArea = 20
+		game.headX = 10
+		game.headY = 10
+		game.snakeBody = []
+		game.tailLength = 0
+		game.fruitX = 5
+		game.fruitY = 5
+		game.fruitRandomizerX = 17
+		game.fruitRandomizerY = 23
+		game.xVelocity= 0
+		game.yVelocity= 0
+
+		score.innerText = 0
+		modalScore.innerText = 0
+	},
 	runGame() {
 		gameSound.play()
 		game.changeSnakePosition();
- 		game.isGameOver();
-		 //using a truthy statement to end the loop
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		game.isGameOver();
+		//using a truthy statement to end the loop
 		if (game.gameOver) {
 			gameOverSound.play()
+			modal.classList.remove('hide')
+			restartBtn.classList.remove('hide')
 			return;
 		}
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		game.checkFruitCollision();
 		game.drawSnake();
 		game.drawFruit();
+		modal.classList.add('hide')
 		setTimeout(game.runGame, 1000 / game.speed);
 	},
 };
 
 document.body.addEventListener('keydown', game.moveSnake);
-game.runGame();
+restartBtn.addEventListener('click', () =>{{
+	modal.classList.add('hide')
+	restartBtn.classList.add('hide')
+	console.log(startBtn)
+	console.log(restartBtn)
+	game.runGame()
+}})
