@@ -62,7 +62,7 @@ canvas {
 	flex-direction: column;
 
 }
-.bg-white button{
+.bg-white button, .buttons button {
 	cursor: pointer;
 	background-color: var(--amaranth);
 	color: #fff;
@@ -91,6 +91,8 @@ canvas {
 .hide {
 	display: none;
 }
+
+
 
 
 
