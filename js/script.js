@@ -13,6 +13,7 @@ const gameSound = new Audio('/assets/theme.mp3')
 const eatSound = new Audio('/assets/eat.mp3')
 const lvlSound = new Audio('/assets/lvl.mp3')
 const gameOverSound = new Audio('/assets/gameover.mp3')
+const btnclick = new Audio('/assets/btn.mp3')
 
 
 
@@ -26,6 +27,47 @@ class SnakeSegment {
 		this.y = y;
 	}
 }
+
+//control functions for for mobile
+function moveUp(){
+	if (game.yVelocity === 1) {
+				  return;
+			  }
+			  game.yVelocity = -1;
+			  game.xVelocity = 0;
+			  btnclick.play()
+  }
+  
+  function moveDown() {
+	if (game.yVelocity === -1) {
+				  return;
+			  }
+			  game.yVelocity = 1;
+			  game.xVelocity = 0;
+			  btnclick.play()
+
+  }
+  
+  function moveLeft() {
+	if (game.xVelocity === 1) {
+				  return;
+			  }
+			  game.yVelocity = 0;
+			  game.xVelocity = -1;
+			  btnclick.play()
+
+  }
+  
+  function moveRight() {
+	if (game.xVelocity === -1) {
+				  return;
+			  }
+			  game.yVelocity = 0;
+			  game.xVelocity = 1;
+			  btnclick.play()
+
+		  }
+  
 
 const game = {
 	gameScore: 0,
@@ -227,6 +269,7 @@ const game = {
 };
 
 document.body.addEventListener('keydown', game.moveSnake);
+
 restartBtn.addEventListener('click', () =>{{
 	modal.classList.add('hide')
 	restartBtn.classList.add('hide')
@@ -234,3 +277,5 @@ restartBtn.addEventListener('click', () =>{{
 	console.log(restartBtn)
 	game.runGame()
 }})
+
+

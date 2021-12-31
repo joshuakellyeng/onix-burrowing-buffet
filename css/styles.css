@@ -1,9 +1,9 @@
 :root {
-	--violet: #100D22;
-	--cornBlue: #17346F;
-	--demin: #0C5AC0;
-	--cerulean: #2AA5D8;
-	--amaranth: #A7304E;
+	--violet: #100d22;
+	--cornBlue: #17346f;
+	--demin: #0c5ac0;
+	--cerulean: #2aa5d8;
+	--amaranth: #a7304e;
 }
 
 * {
@@ -11,37 +11,36 @@
 }
 
 body {
-
 	padding: 0;
 	margin: 0 auto;
 	overflow: hidden;
-    font-family: 'Press Start 2P',cursive;
-    background: url(https://images.unsplash.com/photo-1498736297812-3a08021f206f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1479&q=80);
-    background-size: cover;
+	font-family: 'Press Start 2P', cursive;
+	background: url(https://images.unsplash.com/photo-1498736297812-3a08021f206f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1479&q=80);
+	background-size: cover;
 }
-.game-container{
+.game-container {
 	height: 100vh;
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-
-h1,h2{
-    color: white;
-    text-shadow: 0px 4px 2px rgba(255, 0, 0, 0.521);
+h1,
+h2 {
+	color: white;
+	text-shadow: 0px 4px 2px rgba(255, 0, 0, 0.521);
 	text-transform: uppercase;
 }
 
 canvas {
 	outline: 1px solid var(--amaranth);
-    background-color: #fff;
-    border-radius: 2px;
+	background-color: #fff;
+	border-radius: 2px;
 	box-shadow: 0px 10px 40px 20px rgba(255, 0, 0, 0.521);
 }
 
-.bg-white{
+.bg-white {
 	background-color: #fff;
 	border: 1px solid var(--amaranth);
 	width: 300px;
@@ -57,12 +56,12 @@ canvas {
 .bg-white h3 {
 	font-size: 2.5em;
 }
-.modal-btns{
+.modal-btns {
 	display: flex;
 	flex-direction: column;
-
 }
-.bg-white button, .buttons button {
+.bg-white button,
+.buttons button {
 	cursor: pointer;
 	background-color: var(--amaranth);
 	color: #fff;
@@ -71,10 +70,13 @@ canvas {
 	border: none;
 	border-radius: 5px;
 	font-weight: bolder;
-    font-family: 'Press Start 2P',cursive;
+	font-family: 'Press Start 2P', cursive;
+}
+.buttons button{
+	padding: 2.1em;
 }
 
-.fixed{
+.fixed {
 	position: fixed;
 	top: 10%;
 	right: 0;
@@ -82,7 +84,7 @@ canvas {
 	left: 0;
 }
 
-.flex{
+.flex {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -92,13 +94,12 @@ canvas {
 	display: none;
 }
 
-
-
-
-
 @media (min-width: 60em) {
-	.game-container{
+	.game-container {
 		transform: scale(1.5);
 		image-rendering: pixelated;
+	}
+	.buttons {
+		display: none;
 	}
 }
