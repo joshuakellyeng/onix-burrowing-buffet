@@ -1,21 +1,21 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const score = document.querySelector('#score');
-const modal = document.querySelector('#modal')
-const modalScore = document.querySelector('#modal-score')
-const startBtn = document.querySelector('#start-btn')
-const restartBtn = document.querySelector('#restart-btn')
+const level = document.querySelector('#level');
+const modal = document.querySelector('#modal');
+const modalScore = document.querySelector('#modal-score');
+const startBtn = document.querySelector('#start-btn');
+const restartBtn = document.querySelector('#restart-btn');
 
-
+let gameLevel = 1;
+level.innerText = gameLevel;
 
 //game audio
-const gameSound = new Audio('/assets/theme.mp3')
-const eatSound = new Audio('/assets/eat.mp3')
-const lvlSound = new Audio('/assets/lvl.mp3')
-const gameOverSound = new Audio('/assets/gameover.mp3')
-const btnclick = new Audio('/assets/btn.mp3')
-
-
+const gameSound = new Audio('/assets/theme.mp3');
+const eatSound = new Audio('/assets/eat.mp3');
+const lvlSound = new Audio('/assets/lvl.mp3');
+const gameOverSound = new Audio('/assets/gameover.mp3');
+const btnclick = new Audio('/assets/btn.mp3');
 
 canvas.width = 360;
 canvas.height = 480;
@@ -29,45 +29,41 @@ class SnakeSegment {
 }
 
 //control functions for for mobile
-function moveUp(){
+function moveUp() {
 	if (game.yVelocity === 1) {
-				  return;
-			  }
-			  game.yVelocity = -1;
-			  game.xVelocity = 0;
-			  btnclick.play()
-  }
-  
-  function moveDown() {
+		return;
+	}
+	game.yVelocity = -1;
+	game.xVelocity = 0;
+	btnclick.play();
+}
+
+function moveDown() {
 	if (game.yVelocity === -1) {
-				  return;
-			  }
-			  game.yVelocity = 1;
-			  game.xVelocity = 0;
-			  btnclick.play()
+		return;
+	}
+	game.yVelocity = 1;
+	game.xVelocity = 0;
+	btnclick.play();
+}
 
-  }
-  
-  function moveLeft() {
+function moveLeft() {
 	if (game.xVelocity === 1) {
-				  return;
-			  }
-			  game.yVelocity = 0;
-			  game.xVelocity = -1;
-			  btnclick.play()
+		return;
+	}
+	game.yVelocity = 0;
+	game.xVelocity = -1;
+	btnclick.play();
+}
 
-  }
-  
-  function moveRight() {
+function moveRight() {
 	if (game.xVelocity === -1) {
-				  return;
-			  }
-			  game.yVelocity = 0;
-			  game.xVelocity = 1;
-			  btnclick.play()
-
-		  }
-  
+		return;
+	}
+	game.yVelocity = 0;
+	game.xVelocity = 1;
+	btnclick.play();
+}
 
 const game = {
 	gameScore: 0,
@@ -76,7 +72,7 @@ const game = {
 	//blockSize will determine the size of our blocks along the game grid
 	blockSize: 18,
 	//gameGridArea will determine the length the game window along the X axis in block size for object placement
-	//gameGridArea will determine the cell size that our snake block 
+	//gameGridArea will determine the cell size that our snake block
 	gameGridArea: 20,
 	//this will be the initial value for the snake head X spawn location
 	headX: 10,
@@ -96,7 +92,6 @@ const game = {
 
 	gameOver: false,
 	drawSnake() {
-
 		ctx.fillStyle = '#308AA7';
 		for (let i = 0; i < game.snakeBody.length; i++) {
 			let part = game.snakeBody[i];
@@ -108,9 +103,9 @@ const game = {
 			);
 		}
 		//snake body
-		game.snakeBody.push(new SnakeSegment(game.headX, game.headY))
-		if(game.snakeBody.length > game.tailLength) {
-			game.snakeBody.shift()
+		game.snakeBody.push(new SnakeSegment(game.headX, game.headY));
+		if (game.snakeBody.length > game.tailLength) {
+			game.snakeBody.shift();
 		}
 		//snake head
 		ctx.fillStyle = '#A7304E';
@@ -140,75 +135,79 @@ const game = {
 			game.blockSize
 		);
 	},
-	isGameOver(){
+	isGameOver() {
 		//walls lose case
-		if(game.headX < 0 || game.headX > game.fruitRandomizerX){
-			game.gameOver = true
+		if (game.headX < 0 || game.headX > game.fruitRandomizerX) {
+			game.gameOver = true;
 		}
-		if(game.headY < 0 || game.headY > game.fruitRandomizerY){
-			game.gameOver = true
+		if (game.headY < 0 || game.headY > game.fruitRandomizerY) {
+			game.gameOver = true;
 		}
-		if(game.gameScore > 4000){
-			game.gameOver = true
+		if (game.gameScore > 4000) {
+			game.gameOver = true;
 		}
 		//body touch lose case
-		for(let i = 0; i < game.snakeBody.length; i++){
+		for (let i = 0; i < game.snakeBody.length; i++) {
 			let part = game.snakeBody[i];
-			if(part.x === game.headX && part.y === game.headY){
-				game.gameOver = true
+			if (part.x === game.headX && part.y === game.headY) {
+				game.gameOver = true;
 				break;
 			}
 		}
-		
+
 		//add a game over screen
-	
 	},
 	checkFruitCollision() {
 		if (game.fruitX === game.headX && game.fruitY === game.headY) {
 			game.fruitX = Math.floor(Math.random() * game.fruitRandomizerX);
 			game.fruitY = Math.floor(Math.random() * game.fruitRandomizerY);
 			game.tailLength++;
-			game.gameScore += 100
-			score.innerText = game.gameScore
-			modalScore.innerText = game.gameScore
+			game.gameScore += 100;
+			score.innerText = game.gameScore;
+			modalScore.innerText = game.gameScore;
 
 			eatSound.play();
 
-			if(game.gameScore === 500){
+			if (game.gameScore === 500) {
 				game.speed += 2;
-				lvlSound.play()
-				console.log(game.speed)
+				lvlSound.play();
+				gameLevel++;
+				level.innerText = gameLevel;
 			}
-			if(game.gameScore === 1000){
+			if (game.gameScore === 1000) {
 				game.speed += 3;
-				lvlSound.play()
-				console.log(game.speed)
+				lvlSound.play();
+				gameLevel++;
+				level.innerText = gameLevel;
 			}
-			if(game.gameScore === 1500){
+			if (game.gameScore === 1500) {
 				game.speed += 4;
-				lvlSound.play()
-				console.log(game.speed)
+				lvlSound.play();
+				gameLevel++;
+				level.innerText = gameLevel;
 			}
-			if(game.gameScore === 2000){
+			if (game.gameScore === 2000) {
 				game.speed += 5;
-				lvlSound.play()
-				console.log(game.speed)
+				lvlSound.play();
+				gameLevel++;
+				level.innerText = gameLevel;
 			}
-			if(game.gameScore === 2500){
+			if (game.gameScore === 2500) {
 				game.speed += 5;
-				lvlSound.play()
-				console.log(game.speed)
+				lvlSound.play();
+				gameLevel++;
+				level.innerText = gameLevel;
 			}
-			if(game.gameScore === 3000){
+			if (game.gameScore === 3000) {
 				game.speed += 15;
-				lvlSound.play()
-				console.log(game.speed)
+				lvlSound.play();
+				level.innerText = 'Final Round';
 			}
 		}
 	},
 	//add rock collision method
 	moveSnake(event) {
-		if (event.key === 'ArrowUp' || event.key === 'w' ) {
+		if (event.key === 'ArrowUp' || event.key === 'w') {
 			//the nested conditional if statement prevents our snake from turning in on itself
 			if (game.yVelocity === 1) {
 				return;
@@ -230,7 +229,7 @@ const game = {
 			game.yVelocity = 0;
 			game.xVelocity = -1;
 		}
-		if (event.key === 'ArrowRight'|| event.key === 'd') {
+		if (event.key === 'ArrowRight' || event.key === 'd') {
 			if (game.xVelocity === -1) {
 				return;
 			}
@@ -238,58 +237,58 @@ const game = {
 			game.xVelocity = 1;
 		}
 	},
-	init(){
-		game.gameScore = 0
-		game.speed = 5
-		game.blockSize = 18
-		game.gameGridArea = 20
-		game.headX = 10
-		game.headY = 10
-		game.snakeBody = []
-		game.tailLength = 0
-		game.fruitX = 5
-		game.fruitY = 5
-		game.fruitRandomizerX = 17
-		game.fruitRandomizerY = 23
-		game.xVelocity= 0
-		game.yVelocity= 0
+	init() {
+		game.gameScore = 0;
+		game.speed = 5;
+		game.blockSize = 18;
+		game.gameGridArea = 20;
+		game.headX = 10;
+		game.headY = 10;
+		game.snakeBody = [];
+		game.tailLength = 0;
+		game.fruitX = 5;
+		game.fruitY = 5;
+		game.fruitRandomizerX = 17;
+		game.fruitRandomizerY = 23;
+		game.xVelocity = 0;
+		game.yVelocity = 0;
 
-		score.innerText = 0
-		modalScore.innerText = 0
+		score.innerText = 0;
+		modalScore.innerText = 0;
 	},
 	runGame() {
-		gameSound.play()
+		gameSound.play();
 		game.changeSnakePosition();
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		game.isGameOver();
 		//using a truthy statement to end the loop
 		if (game.gameOver) {
-			gameOverSound.play()
-			modal.classList.remove('hide')
-			restartBtn.classList.remove('hide')
+			gameOverSound.play();
+			modal.classList.remove('hide');
+			restartBtn.classList.remove('hide');
 			return;
 		}
 		//the only win condition
-		if(game.gameScore === 3200){
-			alert("You Lasted One Round At The Insane Level Congratulations!")
+		if (game.gameScore === 3200) {
+			alert('You Lasted One Round At The Insane Level Congratulations!');
 			return;
 		}
 		game.checkFruitCollision();
 		game.drawSnake();
 		game.drawFruit();
-		modal.classList.add('hide')
+		modal.classList.add('hide');
 		setTimeout(game.runGame, 1000 / game.speed);
 	},
 };
 
 document.body.addEventListener('keydown', game.moveSnake);
 
-restartBtn.addEventListener('click', () =>{{
-	modal.classList.add('hide')
-	restartBtn.classList.add('hide')
-	console.log(startBtn)
-	console.log(restartBtn)
-	game.runGame()
-}})
-
-
+restartBtn.addEventListener('click', () => {
+	{
+		modal.classList.add('hide');
+		restartBtn.classList.add('hide');
+		console.log(startBtn);
+		console.log(restartBtn);
+		game.runGame();
+	}
+});
