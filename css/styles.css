@@ -46,7 +46,7 @@ canvas {
 	background-color: #fff;
 	border: 1px solid var(--amaranth);
 	width: 300px;
-	height: 300px;
+	height: 400px;
 	/* padding: 0.5em 0; */
 	display: flex;
 	flex-direction: column;
@@ -87,7 +87,7 @@ canvas {
 	position: fixed;
 	top: 0;
 	right: 0;
-	bottom: 10%;
+	bottom: 0;
 	left: 0;
 }
 
@@ -100,6 +100,11 @@ canvas {
 .hide {
 	display: none;
 }
+
+#instructions{
+	display: none;
+}
+
 /* large screens */
 @media (min-width: 60em) {
 	.game-container {
@@ -109,12 +114,16 @@ canvas {
 	.buttons {
 		display: none;
 	}
+	#instructions {
+		display: block;
+		text-align: center;
+	}
 	h1{
 		display: block;
 		font-size: 2em;
 	}
 	.fixed{
-		top: 10%;
+		top: 20%;
 		bottom: 0;
 	}
 	

@@ -7,6 +7,7 @@ const modalScore = document.querySelector('#modal-score');
 const startBtn = document.querySelector('#start-btn');
 const restartBtn = document.querySelector('#restart-btn');
 const modalText = document.querySelector('#modal-text')
+const instr = document.querySelector('#instuctions')
 
 let gameLevel = 1;
 level.innerText = gameLevel;
@@ -199,7 +200,7 @@ const game = {
 			if (game.gameScore === 3000) {
 				game.speed += 15;
 				lvlSound.play();
-				level.innerText = 'Final Round';
+				level.innerText = 'Final Level';
 			}
 		}
 	},
@@ -236,7 +237,6 @@ const game = {
 		}
 	},
 	init() {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		game.gameScore = 0;
 		game.speed = 5;
 		game.blockSize = 18;
@@ -273,7 +273,8 @@ const game = {
 		}
 		//the only win condition
 		if (game.gameScore === 3200) {
-			alert('You Lasted One Round At The Insane Level Congratulations!');
+			// alert('You Lasted One Round At The Insane Level Congratulations!');
+			modal.classList.remove('hide')
 			modalText.innerText = 'You Win!'
 			modalText.classList.remove('hide')
 			return;
@@ -287,13 +288,3 @@ const game = {
 };
 
 document.body.addEventListener('keydown', game.moveSnake);
-
-// restartBtn.addEventListener('click', () => {
-// 	{
-// 		modal.classList.add('hide');
-// 		restartBtn.classList.add('hide');
-// 		console.log(startBtn);
-// 		console.log(restartBtn);
-// 		game.runGame();
-// 	}
-// });
