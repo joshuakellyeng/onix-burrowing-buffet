@@ -1,4 +1,6 @@
-# snake.exe
+
+<img style="width: 100%" src="assets\snake.png">
+<hr>
 
 Background Img Used:
 Photo by <a href="https://unsplash.com/@ben_neale?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ben Neale</a> on <a href="https://unsplash.com/s/photos/arcade?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -15,3 +17,9 @@ https://cloudconvert.com/
 https://opengameart.org/content/electro-opening-theme
 Copyright/Attribution Notice: 
 Music by Cleyton Kauffman - https://soundcloud.com/cleytonkauffman
+
+
+
+
+
+<p>Here</p>
