@@ -103,7 +103,7 @@ canvas {
 /* large screens */
 @media (min-width: 60em) {
 	.game-container {
-		transform: scale(1.5);
+		transform: scale(1.2);
 		image-rendering: pixelated;
 	}
 	.buttons {

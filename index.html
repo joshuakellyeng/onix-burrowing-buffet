@@ -26,9 +26,10 @@
 				<div class="bg-white">
 					<h3 id="modal-score">0</h3>
 					<p>Score</p>
+					<p id="modal-text" class="hide">GAME OVER</p>
 					<div class="modal-btns">
 						<button id="start-btn" onclick="game.runGame()">Start Game</button>
-						<button id="restart-btn" class="hide">Restart</button>
+						<button id="restart-btn" class="hide" onclick="game.init()">Restart</button>
 					</div>
 				</div>
 			</div>

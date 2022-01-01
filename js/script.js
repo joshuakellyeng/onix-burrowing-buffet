@@ -6,6 +6,7 @@ const modal = document.querySelector('#modal');
 const modalScore = document.querySelector('#modal-score');
 const startBtn = document.querySelector('#start-btn');
 const restartBtn = document.querySelector('#restart-btn');
+const modalText = document.querySelector('#modal-text')
 
 let gameLevel = 1;
 level.innerText = gameLevel;
@@ -143,9 +144,6 @@ const game = {
 		if (game.headY < 0 || game.headY > game.fruitRandomizerY) {
 			game.gameOver = true;
 		}
-		if (game.gameScore > 4000) {
-			game.gameOver = true;
-		}
 		//body touch lose case
 		for (let i = 0; i < game.snakeBody.length; i++) {
 			let part = game.snakeBody[i];
@@ -153,8 +151,8 @@ const game = {
 				game.gameOver = true;
 				break;
 			}
-		}
-
+		}	
+		
 		//add a game over screen
 	},
 	checkFruitCollision() {
@@ -238,6 +236,7 @@ const game = {
 		}
 	},
 	init() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		game.gameScore = 0;
 		game.speed = 5;
 		game.blockSize = 18;
@@ -255,6 +254,8 @@ const game = {
 
 		score.innerText = 0;
 		modalScore.innerText = 0;
+		gameLevel = 1
+		game.runGame()
 	},
 	runGame() {
 		gameSound.play();
@@ -264,31 +265,35 @@ const game = {
 		//using a truthy statement to end the loop
 		if (game.gameOver) {
 			gameOverSound.play();
-			modal.classList.remove('hide');
+			modal.classList.toggle('hide');
+			modalText.classList.remove('hide')
 			restartBtn.classList.remove('hide');
+			startBtn.classList.add('hide')
 			return;
 		}
 		//the only win condition
 		if (game.gameScore === 3200) {
 			alert('You Lasted One Round At The Insane Level Congratulations!');
+			modalText.innerText = 'You Win!'
+			modalText.classList.remove('hide')
 			return;
 		}
+		modal.classList.add('hide');
 		game.checkFruitCollision();
 		game.drawSnake();
 		game.drawFruit();
-		modal.classList.add('hide');
 		setTimeout(game.runGame, 1000 / game.speed);
 	},
 };
 
 document.body.addEventListener('keydown', game.moveSnake);
 
-restartBtn.addEventListener('click', () => {
-	{
-		modal.classList.add('hide');
-		restartBtn.classList.add('hide');
-		console.log(startBtn);
-		console.log(restartBtn);
-		game.runGame();
-	}
-});
+// restartBtn.addEventListener('click', () => {
+// 	{
+// 		modal.classList.add('hide');
+// 		restartBtn.classList.add('hide');
+// 		console.log(startBtn);
+// 		console.log(restartBtn);
+// 		game.runGame();
+// 	}
+// });
