@@ -1,24 +1,35 @@
+//canvas & ctx allows us to draw on the canvas
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
+
+//score and level will allow us to update values using the DOM
 const score = document.querySelector('#score');
 const level = document.querySelector('#level');
+
+//the Modal will display the start button, end score and a restart button
 const modal = document.querySelector('#modal');
 const modalScore = document.querySelector('#modal-score');
 const startBtn = document.querySelector('#start-btn');
 const restartBtn = document.querySelector('#restart-btn');
 const modalText = document.querySelector('#modal-text')
+
+//once game is over or game is won instr will be set to hide
 const instr = document.querySelector('#instuctions')
 
+//game level will increment over the course of the game letting the player know what level they are on during the course of gameplay
 let gameLevel = 1;
 level.innerText = gameLevel;
 
+
 //game audio
+//main game song theme
 const gameSound = new Audio('/assets/theme.mp3');
 const eatSound = new Audio('/assets/eat.mp3');
 const lvlSound = new Audio('/assets/lvl.mp3');
 const gameOverSound = new Audio('/assets/gameover.mp3');
 const btnclick = new Audio('/assets/btn.mp3');
 
+//this controls the width and height of the canvas window
 canvas.width = 360;
 canvas.height = 480;
 
@@ -67,28 +78,37 @@ function moveRight() {
 	btnclick.play();
 }
 
+//this is where we will store the majority of our game content and values
 const game = {
+	//this will set the initial value for our score through the DOM
 	gameScore: 0,
 	//speed key will determine the speed of the game and the refresh rate of the animation
 	speed: 4,
+
 	//blockSize will determine the size of our blocks along the game grid
 	blockSize: 18,
-	//gameGridArea will determine the length the game window along the X axis in block size for object placement
-	//gameGridArea will determine the cell size that our snake block
+	
+	//gameGridArea will control how our snake and fruit object appear on the canvas in a grid
 	gameGridArea: 20,
-	//this will be the initial value for the snake head X spawn location
+
+	//headX and headY will be the initial value for the snake spawn location on our canvas
 	headX: 10,
-	//this will be the initial value for the snake head Y spawn location
 	headY: 10,
-	//snakeBody will hold the segments added to the snake head
+
+	//snakeBody will hold the segments added to the snake head in an array
 	snakeBody: [],
+	//tailLength will control the starting length of the snake tail
 	tailLength: 0,
 
+	//fruitX and fruitY will be the initial value for the snake spawn location on our canvas
 	fruitX: 5,
 	fruitY: 5,
+
+	//fruitRandomizer will ensure that our fruit spawns within the grid of the canvas at all times albiet randomly
 	fruitRandomizerX: 17,
 	fruitRandomizerY: 23,
 
+	//our velocity will determine the directional velocity of our snake once input is given
 	xVelocity: 0,
 	yVelocity: 0,
 
