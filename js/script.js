@@ -271,9 +271,8 @@ const game = {
 			startBtn.classList.add('hide')
 			return;
 		}
-		//the only win condition
-		if (game.gameScore === 3200) {
-			// alert('You Lasted One Round At The Insane Level Congratulations!');
+		//the only win state
+		if (game.gameScore === 3100) {
 			modal.classList.remove('hide')
 			modalText.innerText = 'You Win!'
 			modalText.classList.remove('hide')
