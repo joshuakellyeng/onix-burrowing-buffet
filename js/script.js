@@ -255,6 +255,7 @@ const game = {
 		score.innerText = 0;
 		modalScore.innerText = 0;
 		gameLevel = 1
+		level.innerText = gameLevel;
 		game.runGame()
 	},
 	runGame() {
