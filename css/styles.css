@@ -135,7 +135,7 @@ canvas {
 	
 }
 /* smaller mobile screens */
-@media (max-width: 760px) {
+@media (max-width: 375px) {
 	.game-container {
 		transform: scale(0.7);
 		image-rendering: pixelated;
