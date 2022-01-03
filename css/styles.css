@@ -1,3 +1,5 @@
+/* color pallet of the bg image  */
+/* most of the styling is intended to be designed mobile first  */
 :root {
 	--violet: #100d22;
 	--cornBlue: #17346f;
@@ -18,6 +20,7 @@ body {
 	background: url(https://images.unsplash.com/photo-1498736297812-3a08021f206f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1479&q=80);
 	background-size: cover;
 }
+
 .game-container {
 	height: 100vh;
 	display: flex;
@@ -47,7 +50,6 @@ canvas {
 	border: 1px solid var(--amaranth);
 	width: 300px;
 	height: 400px;
-	/* padding: 0.5em 0; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
