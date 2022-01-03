@@ -29,6 +29,10 @@ body {
 	align-items: center;
 }
 
+h1{
+	display: none;
+}
+
 
 h1,
 h2 {
