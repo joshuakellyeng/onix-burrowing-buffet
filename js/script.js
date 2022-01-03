@@ -283,13 +283,14 @@ const game = {
 		modalScore.innerText = 0;
 		gameLevel = 1;
 		level.innerText = gameLevel;
+		game.gameOver = false;
 		game.runGame()
 	},
 	//here is where the game will run all the methods listed above.
 	runGame() {
 		gameSound.play();
-		game.changeSnakePosition();
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		game.changeSnakePosition();
 		game.isGameOver();
 		//using a truthy statement to end the loop
 		if (game.gameOver) {

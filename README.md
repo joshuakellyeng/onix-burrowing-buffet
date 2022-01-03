@@ -34,10 +34,6 @@
     <li>Vanilla JS</li>
 </ul>
 
-<h4>Unsolved Problems</h4>
-<p>I have been trying to impliment a functioning restart button but have yet to find a solution.</p>
-
-
 <hr>
 <h3>Listed Below Are All Assets/Resources/Tutorials I Used For The Project</h3>
 <ul>
