@@ -80,7 +80,7 @@ canvas {
 	
 }
 .buttons button{
-	padding: 2.1em 5.5em;
+	padding: 2em 5em;
 }
 
 .fixed {
@@ -105,7 +105,7 @@ canvas {
 	display: none;
 }
 
-/* large screens */
+/* desktop */
 @media (min-width: 60em) {
 	.game-container {
 		transform: scale(1.2);
@@ -127,4 +127,17 @@ canvas {
 		bottom: 0;
 	}
 	
+}
+/* smaller mobile screens */
+@media (max-width: 760px) {
+	.game-container {
+		transform: scale(0.7);
+		image-rendering: pixelated;
+	}
+	h1{
+		display: none;
+	}
+	#left-n-right-btn{
+		display: flex;
+	}
 }
